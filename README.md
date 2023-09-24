@@ -1,5 +1,17 @@
 # HS-Kleinanzeigen
+To run the project you need the following infrastructure: 
+  - Java (JDK 17 or newer)
+  - Maven (version 3.8 or newer)
+  - Docker
 
+The application will use a relational database to persist the data. To create one run the following command:
+```
+$ docker run --name=mysql -p 4406:3306 -e MYSQL_ROOT_PASSWORD=start01 -e MYSQL_DATABASE=KLEINANZEIGEN -d mysql:8.0.22
+```
+The application uses Redis for chaching. You can start Redis with the following command:
+```
+$ docker run --name=hs-kleinanzeigen-cache -p 127.0.0.1:6379:6379 -d redis:6.2.6
+```
 ## Project idea
 The aim of the project is to develop an online platform for classified ads. The service enables
 the free creation and search of bids and requests of commodities or
