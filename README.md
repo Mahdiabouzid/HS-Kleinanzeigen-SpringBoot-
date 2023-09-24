@@ -8,7 +8,7 @@ The application will use a relational database to persist the data. To create on
 ```
 $ docker run --name=mysql -p 4406:3306 -e MYSQL_ROOT_PASSWORD=start01 -e MYSQL_DATABASE=KLEINANZEIGEN -d mysql:8.0.22
 ```
-The application uses Redis for chaching. You can start Redis with the following command:
+The application uses Redis for caching. You can start Redis with the following command:
 ```
 $ docker run --name=hs-kleinanzeigen-cache -p 127.0.0.1:6379:6379 -d redis:6.2.6
 ```
