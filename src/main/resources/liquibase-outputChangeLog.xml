@@ -1,0 +1,199 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="asus (generated)" id="1670360985503-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="AD"/>
+            </not>
+        </preConditions>
+        <createTable tableName="AD">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="TYPE" type="ENUM('REQUEST', 'OFFER')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TITLE" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRICE" type="INT"/>
+            <column name="LOCATION" type="VARCHAR(30)"/>
+            <column name="CREATED" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CATEGORY_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="CATEGORY"/>
+            </not>
+        </preConditions>
+        <createTable tableName="CATEGORY">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="PARENT_ID" type="INT"/>
+            <column name="NAME" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-3">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="NOTEPAD"/>
+            </not>
+        </preConditions>
+        <createTable tableName="NOTEPAD">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="AD_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTE" type="VARCHAR(30)"/>
+            <column name="CREATED" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-4">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="SubEntityTest"/>
+            </not>
+        </preConditions>
+        <createTable tableName="SubEntityTest">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="testValue" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-5">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="TestEntity"/>
+            </not>
+        </preConditions>
+        <createTable tableName="TestEntity">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-6">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="USER"/>
+            </not>
+        </preConditions>
+        <createTable tableName="USER">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(255)"/>
+            <column name="LAST_NAME" type="VARCHAR(255)"/>
+            <column name="PHONE" type="VARCHAR(30)"/>
+            <column name="LOCATION" type="VARCHAR(255)"/>
+            <column name="CREATED" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-7">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="NOTEPAD"/>
+            </not>
+        </preConditions>
+        <createIndex indexName="AD_ID" tableName="NOTEPAD">
+            <column name="AD_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-8">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="CATEGORY_ID"/>
+            </not>
+        </preConditions>
+        <createIndex indexName="CATEGORY_ID" tableName="AD">
+            <column name="CATEGORY_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-9">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="FKn3kekntr7pm8g9v8ask698ato"/>
+            </not>
+        </preConditions>
+        <createIndex indexName="FKn3kekntr7pm8g9v8ask698ato" tableName="CATEGORY">
+            <column name="PARENT_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-10">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="USER_ID"/>
+            </not>
+        </preConditions>
+        <createIndex indexName="USER_ID" tableName="AD">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-11">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists indexName="USER_ID"/>
+            </not>
+        </preConditions>
+        <createIndex indexName="USER_ID" tableName="NOTEPAD">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-12">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="AD_ibfk_1"/>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="CATEGORY_ID" baseTableName="AD" constraintName="AD_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CATEGORY" validate="true"/>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-13">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="AD_ibfk_2"/>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="AD" constraintName="AD_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="USER" validate="true"/>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-14">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="CATEGORY_ibfk_1"/>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="PARENT_ID" baseTableName="CATEGORY" constraintName="CATEGORY_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="CATEGORY" validate="true"/>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-15">
+        <addForeignKeyConstraint baseColumnNames="AD_ID" baseTableName="NOTEPAD" constraintName="NOTEPAD_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="CASCADE" referencedColumnNames="ID" referencedTableName="AD" validate="true"/>
+    </changeSet>
+    <changeSet author="asus (generated)" id="1670360985503-16">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="NOTEPAD_ibfk_2"/>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="NOTEPAD" constraintName="NOTEPAD_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="USER" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

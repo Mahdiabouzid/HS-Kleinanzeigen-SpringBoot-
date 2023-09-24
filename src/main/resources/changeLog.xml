@@ -1,0 +1,58 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <include file="liquibase-outputChangeLog.xml"/>
+    <changeSet id="1" author="mahdi">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="NOTEPAD"/>
+            </not>
+        </preConditions>
+        <createTable tableName="NOTEPAD">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="AD_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTE" type="VARCHAR(30)"/>
+            <column name="CREATED" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="mahdi" id="2">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="AD_ID"/>
+        </not>
+    </preConditions>
+        <createIndex indexName="AD_ID" tableName="NOTEPAD">
+            <column name="AD_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mahdi" id="3">
+        <preConditions onFail="MARK_RAN">
+            <not>
+            <indexExists indexName="USER_ID"/>
+            </not>
+        </preConditions>
+        <createIndex indexName="USER_ID" tableName="NOTEPAD">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="mahdi" id="4">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="NOTEPAD_ibfk_1"/>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="AD_ID" baseTableName="NOTEPAD" constraintName="NOTEPAD_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="AD" validate="true"/>
+    </changeSet>
+    <changeSet author="mahdi" id="5">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="NOTEPAD_ibfk_2"/>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="NOTEPAD" constraintName="NOTEPAD_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="USER" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
