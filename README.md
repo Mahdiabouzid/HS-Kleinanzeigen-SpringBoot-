@@ -1,4 +1,7 @@
 # HS-Kleinanzeigen
+This Project was done in the module JAVA ENTERPRISE DATENBANKANWENDUNGSENTWICKLUNG at the [University of applied sciences of Darmstadt](https://h-da.de/)
+
+
 To run the project you need the following infrastructure: 
   - Java (JDK 17 or newer)
   - Maven (version 3.8 or newer)
